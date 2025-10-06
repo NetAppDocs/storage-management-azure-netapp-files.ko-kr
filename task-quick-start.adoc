@@ -22,4 +22,4 @@ Azure에서 Microsoft Entra 애플리케이션에 권한을 부여하고 애플�
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["둘"] link:task-create-system.html["Azure NetApp Files 시스템 만들기"]
 [role="quick-margin-para"]
-NetApp 콘솔의 시스템 페이지에서 *시스템 추가* > *Microsoft Azure* > * Azure NetApp Files*를 선택한 다음 Active Directory 애플리케이션에 대한 세부 정보를 제공합니다.
+NetApp Console 의 시스템 페이지에서 *시스템 추가* > *Microsoft Azure* > * Azure NetApp Files*를 선택한 다음 Active Directory 애플리케이션에 대한 세부 정보를 제공합니다.

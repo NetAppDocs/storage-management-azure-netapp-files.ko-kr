@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blocks>
+  <block id="860941d67aa8a8a442ba4a65191838cf" category="doc">볼륨 템플릿 지원</block>
+  <block id="28c1b76e8b0c8f418301bc750b4e9f0e" category="paragraph">새로운 애플리케이션 템플릿 서비스를 사용하면 Azure NetApp Files 에 대한 볼륨 템플릿을 설정할 수 있습니다.  템플릿을 사용하면 용량 풀, 크기, 프로토콜, 볼륨이 위치해야 하는 VNet 및 서브넷 등 특정 볼륨 매개변수가 이미 템플릿에 정의되어 있으므로 작업이 더 쉬워집니다.  매개변수가 이미 미리 정의된 경우 다음 볼륨 매개변수로 건너뛸 수 있습니다.</block>
+  <block id="65d2e55c231c87b516e734e63f823cf5" category="inline-link">애플리케이션 템플릿에 대해 알아보고 사용자 환경에서 이를 사용하는 방법을 알아보세요.</block>
+  <block id="a80baf4fa5d71b9ef418edfcaebd2759" category="list-text"><block ref="a80baf4fa5d71b9ef418edfcaebd2759" category="inline-link-rx"></block></block>
+  <block id="1636ba950a663744d701c73060d64523" category="inline-link">템플릿에서 Azure NetApp Files 볼륨을 만드는 방법을 알아보세요.</block>
+  <block id="45ee83d3cd24c8a79ff15330399da6a7" category="list-text"><block ref="45ee83d3cd24c8a79ff15330399da6a7" category="inline-link-rx"></block></block>
+  <block id="2d177a5ce778fe0e6f460ac5e9449f84" category="doc">볼륨 템플릿은 더 이상 지원되지 않습니다.</block>
+  <block id="14b1c6bd63866971a4cd695c3c2a3d80" category="paragraph">더 이상 템플릿에서 볼륨을 생성할 수 없습니다. 이 작업은 더 이상 사용할 수 없는 BlueXP 복구 서비스와 관련이 있습니다.</block>
+  <block id="bb123d17400bea06780499dfee0aa1eb" category="doc">새로운 허가가 필요합니다</block>
+  <block id="19c74b0651bd4a8c13580d2b199c9dcb" category="paragraph">이제 BlueXP 에서 Azure NetApp Files 볼륨을 관리하려면 다음 권한이 필요합니다.</block>
+  <block id="d84dc0ddea3fe691a4f90418dade9248" category="paragraph">Microsoft.Network/virtualNetworks/subnets/read</block>
+  <block id="642c767a957f879cd5a09310eef9e35e" category="paragraph">가상 네트워크 서브넷을 읽으려면 이 권한이 필요합니다.</block>
+  <block id="f1c8aee091d7af06827bd81ed4e56e5a" category="paragraph">현재 BlueXP 에서 Azure NetApp Files 관리하고 있다면 이전에 만든 Microsoft Entra 애플리케이션과 연결된 사용자 지정 역할에 이 권한을 추가해야 합니다.</block>
+  <block id="49cb664c5b71b8da627e27d37fe9de88" category="inline-link">Microsoft Entra 애플리케이션을 설정하고 사용자 지정 역할 권한을 보는 방법을 알아보세요.</block>
+  <block id="dd9368e78fe4f3483d324b6a988d2f87" category="paragraph"><block ref="aa8b5c9ebdcb57c9427e7bd28a70f7d0" category="inline-link-rx"></block> .</block>
+  <block id="bc2fe31b1e2682a9a79513d792e9c721" category="doc">BlueXP 는 이제 NetApp Console 입니다.</block>
+  <block id="745be0d280d894f70c3f88e76f519456" category="paragraph">BlueXP 데이터 인프라 관리에서의 역할을 더 잘 반영하도록 이름이 바뀌고 재설계되었습니다.</block>
+  <block id="7e4f7c37590688c797d9b40e3a3423e3" category="paragraph">NetApp Console 엔터프라이즈급 온프레미스 및 클라우드 환경 전반의 스토리지 및 데이터 서비스를 중앙에서 관리하여 실시간 통찰력, 더 빠른 워크플로, 간소화된 관리를 제공합니다.</block>
+  <block id="2ef9d641d45afe99b74ad6f9a9f797ad" category="inline-link">NetApp Console 릴리스 노트</block>
+  <block id="9d88b780dd182bc558e5dd7624d35838" category="paragraph">변경된 사항에 대한 자세한 내용은 다음을 참조하세요.<block ref="857ac87b6d807bceb0af9d0ff774da69" category="inline-link-rx"></block> .</block>
+  <block id="8314edb21bf66f4096470cb83529f253" category="summary">Azure NetApp Files 사용하면 기업은 클라우드에 맞게 리팩토링할 필요 없이 성능 집약적이고 대기 시간에 민감한 핵심 비즈니스 핵심 애플리케이션을 Azure로 마이그레이션하고 실행할 수 있습니다.</block>
+  <block id="8b53faee27870b72e0be69261d54a7ee" category="doc">Azure NetApp Files 에 대해 알아보기</block>
+  <block id="98f770b0af18ca763421bac22b4b6805" category="section-title">특징</block>
+  <block id="b4afab774d5aae036a66f2e95c63406b" category="list-text">여러 프로토콜을 지원하므로 Linux 및 Windows 애플리케이션을 Azure에서 원활하게 "리프트 앤 시프트" 방식으로 실행할 수 있습니다.</block>
+  <block id="86431e70f2e01436434235b95f27507f" category="list-text">다양한 성능 계층을 통해 워크로드 성능 요구 사항에 맞춰 긴밀하게 조정할 수 있습니다.</block>
+  <block id="0f5101975c831a1a6350155e818d4cbf" category="list-text">SAP HANA, GDPR, HIPAA를 포함한 주요 인증을 통해 가장 까다로운 작업 부하도 Azure로 마이그레이션할 수 있습니다.</block>
+  <block id="8ffb394f66e23734c8bca5453b3c7cb9" category="section-title">NetApp Console 의 추가 기능</block>
+  <block id="5d71e19085397e9739480c0c605473b6" category="list-text">NetApp Console 에서 직접 NFS 또는 SMB 데이터를 Azure NetApp Files 로 마이그레이션합니다.  데이터 마이그레이션은 NetApp Copy and Sync 통해 지원됩니다.</block>
+  <block id="457a1cf5fd2ca976e622a9a914d24bad" category="inline-link">복사 및 동기화에 대해 자세히 알아보세요</block>
+  <block id="f9b2d2345f65b81f6f23df634577d11f" category="paragraph"><block ref="f9b2d2345f65b81f6f23df634577d11f" category="inline-link-rx"></block></block>
+  <block id="afbefcbdce42a0d7c65e3afe94dbbeb2" category="list-text">인공 지능(AI) 기반 기술을 사용하는 NetApp Data Classification 데이터 컨텍스트를 이해하고 Azure NetApp Files 계정에 있는 중요한 데이터를 식별하는 데 도움이 될 수 있습니다.</block>
+  <block id="ec140a065c9901de98431ef13e0fd87c" category="inline-link">데이터 분류에 대해 자세히 알아보세요</block>
+  <block id="eaf2819473ed7d1df2223c31ed667b65" category="paragraph"><block ref="eaf2819473ed7d1df2223c31ed667b65" category="inline-link-rx"></block></block>
+  <block id="3c031b939f6ec312ee601d021e7a6644" category="section-title">NetApp Console</block>
+  <block id="0ab39846423ff61c3d506a74e394e89c" category="paragraph">Azure NetApp Files NetApp Console 통해 액세스할 수 있습니다.</block>
+  <block id="0a0979a6d279475a420ea5c279943daa" category="paragraph">NetApp Console 엔터프라이즈급 온프레미스 및 클라우드 환경 전반에서 NetApp 스토리지 및 데이터 서비스를 중앙에서 관리할 수 있는 기능을 제공합니다. NetApp 데이터 서비스에 액세스하고 사용하려면 콘솔이 필요합니다. 관리 인터페이스로서, 하나의 인터페이스에서 여러 스토리지 리소스를 관리할 수 있습니다. 콘솔 관리자는 기업 내 모든 시스템의 저장소와 서비스에 대한 액세스를 제어할 수 있습니다.</block>
+  <block id="874065797510ef71853078d085cab4b0" category="paragraph">NetApp Console 사용하려면 라이선스나 구독이 필요하지 않으며, 스토리지 시스템이나 NetApp 데이터 서비스에 대한 연결을 보장하기 위해 클라우드에 Console 에이전트를 배포해야 할 때만 요금이 부과됩니다. 그러나 콘솔에서 액세스할 수 있는 일부 NetApp 데이터 서비스는 라이선스 기반이거나 구독 기반입니다.</block>
+  <block id="e955295a860e893d00951c8233972d56" category="paragraph">자세히 알아보세요<block ref="2f3134b8970d60226f00e362a8c05c8c" category="inline-link-macro-rx"></block> .</block>
+  <block id="20b4f77bd00b4f63a49ec8e08f3bf6a6" category="section-title">비용</block>
+  <block id="b8371ae9d98b29b8335a4aea09cdaff3" category="inline-link">Azure NetApp Files 가격 보기</block>
+  <block id="4b3f21f8a5b6bf8c27f851053be34ac4" category="paragraph"><block ref="4b3f21f8a5b6bf8c27f851053be34ac4" category="inline-link-rx"></block></block>
+  <block id="212f67b7ceadd9d33adffc72c65fc244" category="paragraph">구독 및 청구는 콘솔이 아닌 Azure NetApp Files 서비스에서 유지 관리됩니다.</block>
+  <block id="8c4b25218155a1fdb972f4169855d04f" category="section-title">지원되는 지역</block>
+  <block id="d6c4ca89b6d4950d0522d6198b27af71" category="inline-link">지원되는 Azure 지역 보기</block>
+  <block id="267c2c68dd571445da799a8af484fa6e" category="paragraph"><block ref="267c2c68dd571445da799a8af484fa6e" category="inline-link-rx"></block></block>
+  <block id="20c404f3ca0633629eee9b1b4ccd6737" category="section-title">도움 받기</block>
+  <block id="edc3629fc8102552dbd6ec1e10e2b821" category="paragraph">Azure NetApp Files 와 관련된 기술 지원 문제의 경우 Azure Portal을 사용하여 Microsoft에 지원 요청을 기록하세요.  연결된 Microsoft 구독을 선택하고 *저장소* 아래에서 * Azure NetApp Files* 서비스 이름을 선택합니다.  Microsoft 지원 요청을 만드는 데 필요한 나머지 정보를 제공하세요.</block>
+  <block id="f6bd0d7447ff66cc6b859603a88fbde9" category="section-title">관련 링크</block>
+  <block id="416c44c690a4e35eef01658a7b3f9145" category="inline-link-macro">NetApp Console 웹사이트: Azure NetApp Files</block>
+  <block id="a1466f6534f3edf344fd80369eaa022e" category="list-text"><block ref="a1466f6534f3edf344fd80369eaa022e" category="inline-link-macro-rx"></block></block>
+  <block id="6c32a3d0f1a665987b98dde5a0f96d7d" category="inline-link-macro">Azure NetApp Files 설명서</block>
+  <block id="f7d58c22d89e4cb8d67018180686bc09" category="list-text"><block ref="f7d58c22d89e4cb8d67018180686bc09" category="inline-link-macro-rx"></block></block>
+  <block id="d1d67231275f058f0d4b1af5546d437b" category="inline-link-macro">복사 및 동기화 설명서</block>
+  <block id="543f664393062dba6e415564999842b4" category="list-text"><block ref="543f664393062dba6e415564999842b4" category="inline-link-macro-rx"></block></block>
+  <block id="d41d8cd98f00b204e9800998ecf8427e" category="summary"></block>
+  <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">법적 고지 사항</block>
+  <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="paragraph">법적 고지사항은 저작권 표시, 상표, 특허 등에 대한 정보를 제공합니다.</block>
+  <block id="6016a2b341113bf496b719905398ecd2" category="section-title">저작권</block>
+  <block id="52009bb7ee17227f566cd26a02caee56" category="inline-link-macro"><block ref="52009bb7ee17227f566cd26a02caee56" category="inline-link-rx"></block></block>
+  <block id="a1a9afcf552a769c282769271829889a" category="paragraph"><block ref="a1a9afcf552a769c282769271829889a" category="inline-link-macro-rx"></block></block>
+  <block id="126a02652da6de02962cf1b654fd6376" category="section-title">상표</block>
+  <block id="c4ce4761e466527d26b3e3d5ed1006fd" category="paragraph">NETAPP, NETAPP 로고 및 NetApp 상표 페이지에 나열된 마크는 NetApp, Inc.의 상표입니다. 다른 회사 및 제품 이름은 해당 소유자의 상표일 수 있습니다.</block>
+  <block id="f99aa604031e5049799e73b5c3748a98" category="inline-link-macro"><block ref="f99aa604031e5049799e73b5c3748a98" category="inline-link-rx"></block></block>
+  <block id="5d545fe5152641e2ebe654e336e520e5" category="paragraph"><block ref="5d545fe5152641e2ebe654e336e520e5" category="inline-link-macro-rx"></block></block>
+  <block id="be89498d2f8a22ce47c02ba9795fe2af" category="section-title">특허</block>
+  <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">NetApp 이 소유한 현재 특허 목록은 다음에서 확인할 수 있습니다.</block>
+  <block id="88e5eabd3917048b6927c42496b98f86" category="inline-link-macro"><block ref="88e5eabd3917048b6927c42496b98f86" category="inline-link-rx"></block></block>
+  <block id="dd38f906b37d412de7d1c1dcf4cbf31c" category="paragraph"><block ref="dd38f906b37d412de7d1c1dcf4cbf31c" category="inline-link-macro-rx"></block></block>
+  <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">개인정보 보호정책</block>
+  <block id="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-macro"><block ref="8acb58cbd50ef1b468a020ee0bd351d3" category="inline-link-rx"></block></block>
+  <block id="2352c4e1f4d0024ade0869e00e6243f4" category="paragraph"><block ref="2352c4e1f4d0024ade0869e00e6243f4" category="inline-link-macro-rx"></block></block>
+  <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">오픈소스</block>
+  <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">공지 파일은 NetApp 소프트웨어에서 사용되는 타사 저작권 및 라이선스에 대한 정보를 제공합니다.</block>
+  <block id="4fd101b562f1e5e8d87ff8710122a42f" category="inline-link">NetApp Console 에 대한 알림</block>
+  <block id="389273cce6176eeeeb0c3c61db63595e" category="paragraph"><block ref="389273cce6176eeeeb0c3c61db63595e" category="inline-link-rx"></block></block>
+  <block id="77f63e3628e408c02542e65d5fe4a50b" category="summary">Microsoft Entra 애플리케이션을 설정한 후 NetApp Console 에서 Azure NetApp Files 시스템을 만들어 필요한 볼륨을 만들 수 있습니다.</block>
+  <block id="c49968dd61ea6f65d5f4db3af7724481" category="doc">NetApp Console 에서 Azure NetApp Files 시스템 만들기</block>
+  <block id="766887eccdacffc3ca3c19a5bf704731" category="paragraph">Microsoft Entra 애플리케이션을 설정하고 NetApp Console 에 자격 증명을 추가한 후 Azure NetApp Files 시스템을 만들어 필요한 볼륨을 만들 수 있습니다.</block>
+  <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">단계</block>
+  <block id="4dcda726deabfd502eb98c08c859f4d6" category="list-text">시스템 페이지에서 *시스템 추가*를 선택합니다.</block>
+  <block id="2083c7d3800af1239db96fe1162f3655" category="list-text">*Microsoft Azure*를 선택하세요.</block>
+  <block id="911c1f7504e1a21488e846b256b7bf1e" category="list-text">Azure NetApp Files 옆에서 *검색*을 선택합니다.</block>
+  <block id="a116599338ea0e8c196a7b0d483995e5" category="list-text">세부 정보 페이지에서 시스템 이름을 입력하고 이전에 설정한 자격 증명을 선택합니다.</block>
+  <block id="136dc09835924029e4299fa28f17233d" category="list-text">*계속*을 선택하세요.</block>
+  <block id="8eea62084ca7e541d918e823422bd82e" category="paragraph-title">결과</block>
+  <block id="f037a4c03dc40d8dbde5fa251b34e80f" category="paragraph">이제 Azure NetApp Files 시스템이 생겼습니다.</block>
+  <block id="3a0de2df99f7fc279dd35aff0ef31973" category="inline-image-macro">Azure NetApp Files 시스템의 스크린샷.</block>
+  <block id="6693c2dfdc2c47e27fc17364d3cc5b03" category="paragraph"><block ref="6693c2dfdc2c47e27fc17364d3cc5b03" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="58eaebf972358f1cf03d386a4ade1a0f" category="paragraph-title">다음은 무엇인가요?</block>
+  <block id="2d8388ef854dfa09cecb11936ccce248" category="inline-link-macro">볼륨 생성 및 관리 시작</block>
+  <block id="7287a568988e3d4791216dba265eeae9" category="paragraph"><block ref="1e09faaddd6af4b1a47324cf37312df0" category="inline-link-macro-rx"></block> .</block>
+  <block id="77d4a269f24167619886cc8e413b1300" category="summary">시스템을 설정한 후 Azure NetApp Files 계정, 용량 풀 및 볼륨을 만들 수 있습니다.</block>
+  <block id="9be5a2eae9bab39aee7d0161c137cd43" category="doc">볼륨 생성 및 마운트</block>
+  <block id="1c27e11c5e65b93611e6f5ce640f8184" category="section-title">볼륨 생성</block>
+  <block id="15b71829402124199d38fc483f8a71b5" category="paragraph">새 Azure NetApp Files 계정이나 기존 Azure NetApp Files 계정에서 NFS 또는 SMB 볼륨을 만들 수 있습니다.</block>
+  <block id="135b308ed83c53f1516b7c754566d1c4" category="list-title">시작하기 전에</block>
+  <block id="871a29db0a928b46295d82cee2357c13" category="list-text">SMB를 사용하려면 DNS와 Active Directory를 설정해야 합니다.</block>
+  <block id="943219d5074bb5ad25a6a5caf2ffdd2a" category="list-text">SMB 볼륨을 생성하려면 연결할 수 있는 Windows Active Directory 서버가 있어야 합니다.  볼륨을 생성할 때 이 정보를 입력하게 됩니다.</block>
+  <block id="cec3ad809335330fe1fa6ca172f0f728" category="list-text">Azure NetApp Files 시스템을 엽니다.</block>
+  <block id="91cdf4212dd8b6d1a4b7c7772990269a" category="list-text">*새 볼륨 추가*를 선택하세요.</block>
+  <block id="8efbe080646813cd33c5297ebb1ef190" category="list-text">각 페이지에 필요한 정보를 제공하세요.</block>
+  <block id="456471eadf5491bcec7adf6094a8bf4c" category="list-text">* Azure NetApp Files 계정*: 기존 Azure NetApp Files 계정을 선택하거나 새 계정을 만듭니다.  새 계정을 만들 때는 리소스 그룹도 선택해야 합니다.  기존 리소스 그룹을 사용하거나 새 리소스 그룹을 만들 수 있습니다.</block>
+  <block id="13ecbacd691c26d682199c2a13ae7ca8" category="inline-image-macro">이름, Azure 구독, 위치 및 리소스 그룹을 포함하여 Azure NetApp Files 계정을 만드는 데 필요한 필드의 스크린샷입니다.</block>
+  <block id="be40baf84cfc673a091dfd1b17d7663a" category="paragraph"><block ref="be40baf84cfc673a091dfd1b17d7663a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0dc3251c60a979588ce5f7932e69ba87" category="list-text">*용량 풀*: 기존 용량 풀을 선택하거나 새 용량 풀을 만듭니다.</block>
+  <block id="79f05e8f99917560625d1cf3f2d4fc5d" category="inline-link">서비스 수준</block>
+  <block id="e32293acf9f8f2582959ea59bd2a3d74" category="paragraph">새로운 용량 풀을 생성하는 경우 크기를 지정하십시오.<block ref="4e715f113c82ee22e8628443964b7ef4" category="inline-link-rx"></block> .</block>
+  <block id="3fba1bba05a9e291509b06015205099e" category="paragraph">용량 풀의 최소 크기는 1TB입니다.</block>
+  <block id="1e29b3affdc5fcfad5dac0ecb9e25d13" category="inline-image-macro">용량 풀 생성 메뉴의 스크린샷입니다.</block>
+  <block id="0ad86c450721685ee9aecfd1e1083746" category="paragraph"><block ref="0ad86c450721685ee9aecfd1e1083746" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8e8ec04eab6a2b3620a8d2306a11ee86" category="inline-link-macro">네트워크 기능 구성</block>
+  <block id="7aa03bdde240084e3711de437940eebd" category="list-text">*세부 정보 및 태그*: 볼륨 이름과 크기, 볼륨이 상주해야 하는 VNet 및 서브넷을 입력하고, 선택적으로 볼륨에 대한 태그를 지정합니다.  *표준* 또는 *기본* 네트워킹을 선택하세요.  *표준*은 가상 네트워크(VNet) 기능을 지원하는 반면, *기본*은 IP 제한이 적고 볼륨에 대한 추가 VNet 기능이 없습니다. 자세한 내용은 다음을 참조하세요. <block ref="aab7e0d4714d2268520d028ad84034e8" category="inline-link-macro-rx"></block> .</block>
+  <block id="1aff0e06e72482e629d0851b1b33c4c3" category="inline-image-macro">볼륨 생성 옵션의 스크린샷입니다.</block>
+  <block id="48e4eece00348c431f69a4bd3fc56c32" category="paragraph"><block ref="48e4eece00348c431f69a4bd3fc56c32" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3b608e06daf087ff8d8ec6c3426b4e86" category="list-text">*프로토콜*: NFS 또는 SMB 프로토콜을 선택하고 필요한 정보를 입력합니다.</block>
+  <block id="d42c5c8ad61204ac7a04e10c1f76009e" category="paragraph">NFS를 선택하는 경우 *볼륨 경로*를 입력하고, *NFS 버전*을 선택하고, *내보내기 정책*을 설정해야 합니다.</block>
+  <block id="dea14d87fa3d65df58f3beda6ccb3a30" category="inline-image-macro">NFS 볼륨을 설정하는 데 필요한 필드의 스크린샷입니다.</block>
+  <block id="5a61706f5d21022cecc3f5f8f8c02352" category="paragraph"><block ref="5a61706f5d21022cecc3f5f8f8c02352" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="7dd32198f9c9500fe2062e6beda11335" category="paragraph">SMB를 선택하는 경우 **볼륨 경로**를 입력한 다음 **DNS 기본 IP 주소** 및 Active Directory 구성 세부 정보를 사용하여 SMB 연결을 구성해야 합니다.</block>
+  <block id="384442b7c021ea920d5444dad3c474e3" category="inline-image-macro">SMB 볼륨을 설정하는 데 필요한 필드의 스크린샷입니다.</block>
+  <block id="2bcd793ac083ce37802a490c8642c48a" category="paragraph"><block ref="2bcd793ac083ce37802a490c8642c48a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="405c1e241cc1b6685d6c0cc7dbbc8042" category="list-text">기존 볼륨의 스냅샷을 기반으로 이 볼륨을 생성하려면 스냅샷 이름 드롭다운 목록에서 스냅샷을 선택합니다.</block>
+  <block id="169e200f5675cc6aa192bb4352afc5bc" category="list-text">*볼륨 추가*를 선택하세요.</block>
+  <block id="b9976c307b5cece653d212be305d05e7" category="inline-xref">클라우드 볼륨을 마운트합니다</block>
+  <block id="d6b2cb02a8761e4b21234194687a5da8" category="list-text">볼륨을 생성한 후에는 다음으로 진행해야 합니다.<block ref="119cf8e9ee17747f951e727290c79802" category="inline-xref-macro-rx"></block> .</block>
+  <block id="2a4a19d3d732c5f7aa35fa729ac0d8ac" category="section-title">볼륨 마운트</block>
+  <block id="16e42324a9fa41f7a3c0b449f1b2af15" category="paragraph">NetApp Console 에서 마운트 지침에 액세스하여 볼륨을 호스트에 마운트할 수 있습니다.</block>
+  <block id="13179c49acf98d5c7da5a59de66d57c7" category="list-text">NetApp Console 에서 Azure NetApp Files 시스템을 엽니다.</block>
+  <block id="67f4738c0e1d2b1b1df742199d5c821d" category="list-text">볼륨 위로 커서를 이동한 다음 세 개의 점을 선택하세요.<block ref="2f43b42fd833d1e77420a8dae7419000" prefix=" " category="inline-code"></block> 볼륨 상태 옆에 있습니다.</block>
+  <block id="3441e294ec1049d9f3692284dddd2e3b" category="list-text">**볼륨 마운트**를 선택합니다.</block>
+  <block id="ed098667e58a3c583c4147e4fd6baaa8" category="inline-image-macro">볼륨 위에 커서를 올려 놓았을 때 사용 가능한 작업의 스크린샷입니다.</block>
+  <block id="6baf9d765e707f5ba28ae423f89b6f1d" category="paragraph"><block ref="6baf9d765e707f5ba28ae423f89b6f1d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="38aa5b57f82843fe74bb954a343bf4e0" category="list-text">볼륨을 마운트하려면 지침을 따르세요.</block>
+  <block id="a99fab69b8aa9775fe1767ce605ae8bd" category="summary">NetApp 다양한 방법으로 NetApp Console 에 대한 지원을 제공합니다. 지식 기반(KB) 문서와 커뮤니티 포럼 등 광범위한 무료 셀프 지원 옵션을 연중무휴 24시간 이용할 수 있습니다. 지원 등록 시 웹 티켓팅을 통한 원격 기술 지원이 제공됩니다.</block>
+  <block id="fabfc25ef8996fd90836e58a4c0b26b6" category="doc">도움을 받으세요</block>
+  <block id="2feeca48692986e9cc471ec61f847fca" category="paragraph">NetApp 다양한 방법으로 NetApp Console 과 클라우드 서비스에 대한 지원을 제공합니다. 지식 기반(KB) 문서와 커뮤니티 포럼 등 광범위한 무료 셀프 지원 옵션을 24시간 연중무휴로 이용할 수 있습니다. 지원 등록 시 웹 티켓팅을 통한 원격 기술 지원이 제공됩니다.</block>
+  <block id="522cbb900314aeb84eb5a961c5f94672" category="section-title">클라우드 공급자 파일 서비스에 대한 지원을 받으세요</block>
+  <block id="317cbd2c4fdbfd06a6c66bcd3f57d7ad" category="paragraph">클라우드 공급자 파일 서비스, 해당 인프라 또는 서비스를 사용하는 솔루션과 관련된 기술 지원에 대해서는 해당 제품의 설명서를 참조하세요.</block>
+  <block id="18cf072964a583150dd247485ba75b92" category="inline-link-macro">ONTAP 용 Amazon FSx</block>
+  <block id="359d8b16e442ffaa72e03c95fcd60448" category="list-text"><block ref="359d8b16e442ffaa72e03c95fcd60448" category="inline-link-macro-rx"></block></block>
+  <block id="7450cfde7058dc5e1f7909d0280fd7ae" category="inline-link-macro">Azure NetApp Files</block>
+  <block id="153836c062a78213f2aa165322254aa4" category="list-text"><block ref="153836c062a78213f2aa165322254aa4" category="inline-link-macro-rx"></block></block>
+  <block id="1215f8190533dfdf63d2224a6d88266f" category="inline-link-macro">Google Cloud NetApp Volumes</block>
+  <block id="0d592360c983f234b130127efee38805" category="list-text"><block ref="0d592360c983f234b130127efee38805" category="inline-link-macro-rx"></block></block>
+  <block id="68e6fe8cde496154d24fd032b4262070" category="paragraph">NetApp 과 해당 스토리지 솔루션, 데이터 서비스에 대한 특정 기술 지원을 받으려면 아래에 설명된 지원 옵션을 사용하세요.</block>
+  <block id="edd15fbeb7b2dffa163336ecd4f3e80c" category="section-title">셀프 지원 옵션 사용</block>
+  <block id="5e4b821a1a82558dead1ef6961e90666" category="paragraph">다음 옵션은 주 7일, 하루 24시간 무료로 이용 가능합니다.</block>
+  <block id="5b6cf869265c13af8566f192b4ab3d2a" category="list-text">설명서</block>
+  <block id="5bb94d173380c00577f5e04b6f26bb94" category="paragraph">현재 보고 있는 NetApp Console 문서입니다.</block>
+  <block id="19111351b69b6b15668130b38b7f6038" category="inline-link">지식 기반</block>
+  <block id="942c9249796cf6b78c981ebf15195809" category="list-text"><block ref="942c9249796cf6b78c981ebf15195809" category="inline-link-rx"></block></block>
+  <block id="0e20091afcea2d83d0033a933ba85092" category="paragraph">NetApp 지식 기반을 검색하여 문제 해결에 도움이 되는 문서를 찾아보세요.</block>
+  <block id="14526abd8bda5af347775025cd5342cf" category="inline-link">커뮤니티</block>
+  <block id="410fdb9caa9c64da2ff3f88f4836960d" category="list-text"><block ref="410fdb9caa9c64da2ff3f88f4836960d" category="inline-link-rx"></block></block>
+  <block id="777d75a90b107e4f18469f82c4f81fe2" category="paragraph">NetApp Console 커뮤니티에 가입하여 진행 중인 토론을 팔로우하거나 새로운 토론을 만들어 보세요.</block>
+  <block id="d88bacf2a9fdcbbc844edcba97c34e30" category="section-title">NetApp 지원을 통해 사례 만들기</block>
+  <block id="82812db645b6ff5e9c2a24ddfb66c8d6" category="paragraph">위에 나열된 셀프 지원 옵션 외에도, 지원을 활성화한 후 NetApp 지원 전문가와 협력하여 문제를 해결할 수 있습니다.</block>
+  <block id="8fece025a1a8fef7018449bf104a2527" category="list-title">시작하기 전에</block>
+  <block id="c406bf0ac8ac87bc5bb7132a7351b2ae" category="inline-link">콘솔 로그인과 관련된 자격 증명을 관리하는 방법을 알아보세요.</block>
+  <block id="377118f28487e70bd456993144b72fc7" category="list-text">*사례 만들기* 기능을 사용하려면 먼저 NetApp 지원 사이트 자격 증명을 콘솔 로그인과 연결해야 합니다.<block ref="68c4321a756e3ffe955b62cff6fea46d" category="inline-link-rx"></block> .</block>
+  <block id="e49aa971c20ec071f1b5bbc3c7266769" category="list-text">일련 번호가 있는 ONTAP 시스템에 대한 사례를 개설하는 경우 NSS 계정은 해당 시스템의 일련 번호와 연결되어야 합니다.</block>
+  <block id="0ab80a63088581d58dcf067051f4c894" category="list-text">NetApp Console 에서 *도움말 &gt; 지원*을 선택합니다.</block>
+  <block id="08d96fdd1a845d80db99e6e1dffb8bc7" category="list-text">*리소스* 페이지에서 기술 지원 아래에 있는 사용 가능한 옵션 중 하나를 선택하세요.</block>
+  <block id="6a1b74969231967ed071d465206b15c7" category="list-text">전화로 상담원과 통화하고 싶으시면 *전화하기*를 선택하세요. netapp.com에서 전화할 수 있는 전화번호가 나열된 페이지로 이동하게 됩니다.</block>
+  <block id="d65a2a6fc9caad1867728d4382eeb989" category="list-text">NetApp 지원 전문가에게 티켓을 열려면 *사례 만들기*를 선택하세요.</block>
+  <block id="a1123cd59d7bd876c080c33906ae65ce" category="list-text">*서비스*: 문제와 관련된 서비스를 선택하세요. 예를 들어, * NetApp Console*은 콘솔 내 워크플로 또는 기능과 관련된 기술 지원 문제에 대한 구체적인 내용입니다.</block>
+  <block id="987df7518e2afb50a860647c832afd13" category="list-text">*시스템*: 스토리지에 해당되는 경우 * Cloud Volumes ONTAP* 또는 *온프레미스*를 선택한 다음 연관된 작업 환경을 선택합니다.</block>
+  <block id="8f8e8a86e5f52b6186a37bdf266c4320" category="paragraph">시스템 목록은 콘솔 조직 범위 내에 있으며, 상단 배너에서 선택한 콘솔 에이전트입니다.</block>
+  <block id="e6f29fb3c7636dc0040600dd0e84bb79" category="list-text">*사례 우선순위*: 낮음, 보통, 높음 또는 중요로 사례의 우선순위를 선택합니다.</block>
+  <block id="835eb4008e97c2a7f69bbb2725285e34" category="paragraph">이러한 우선순위에 대한 자세한 내용을 알아보려면 필드 이름 옆에 있는 정보 아이콘 위에 마우스를 올려놓으세요.</block>
+  <block id="0f7d9319c95a8be1492e74601c4b3259" category="list-text">*문제 설명*: 해당 오류 메시지나 수행한 문제 해결 단계를 포함하여 문제에 대한 자세한 설명을 제공하세요.</block>
+  <block id="002c6f26fb01affb37b8cf3cef7a1fb0" category="list-text">*추가 이메일 주소*: 이 문제를 다른 사람에게 알리려면 추가 이메일 주소를 입력하세요.</block>
+  <block id="c7f5c1a75acc58c6f004efc0ce1eba09" category="list-text">*첨부파일(선택사항)*: 최대 5개의 첨부파일을 한 번에 하나씩 업로드하세요.</block>
+  <block id="bfa80e7aaad6da353b431bff3a0e12d6" category="paragraph">첨부파일은 파일당 25MB로 제한됩니다. 다음 파일 확장자가 지원됩니다: txt, log, pdf, jpg/jpeg, rtf, doc/docx, xls/xlsx, csv.</block>
+  <block id="baaf0e61add7d12cf8d12e023d5aef18" category="inline-image-macro">NetApp 지원팀에 사례를 생성할 수 있는 사례 생성 양식의 스크린샷입니다.</block>
+  <block id="77c89527ec8a9f89b24c5579d19b3b4b" category="paragraph"><block ref="77c89527ec8a9f89b24c5579d19b3b4b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="bd965e38a0c9cf27aa1bde099308e23f" category="paragraph-title">당신이 완료한 후</block>
+  <block id="18f487556417bb6d9721a7005ae097c9" category="paragraph">지원 사례 번호가 포함된 팝업이 나타납니다. NetApp 지원 전문가가 귀하의 사례를 검토하고 곧 연락드릴 것입니다.</block>
+  <block id="0ff9b4b8684b9e03c9c1e1320935eae3" category="paragraph">지원 사례 기록을 보려면 *설정 &gt; 타임라인*을 선택하고 "지원 사례 만들기"라는 이름의 작업을 찾으세요. 가장 오른쪽에 있는 버튼을 누르면 동작을 확장하여 자세한 내용을 볼 수 있습니다.</block>
+  <block id="5c56753585e89a84941bb3a78bc681af" category="paragraph">사례를 생성하려고 할 때 다음과 같은 오류 메시지가 나타날 수 있습니다.</block>
+  <block id="a30f69ab0ec85d427a3e8835713525bd" category="paragraph">"선택한 서비스에 대해 사례를 생성할 권한이 없습니다."</block>
+  <block id="178fdaf97b1d1577437f11ee9d5e5229" category="paragraph">이 오류는 NSS 계정과 해당 계정과 연결된 기록상 회사가 NetApp Console 계정 일련 번호에 대한 기록상 회사와 동일하지 않다는 것을 의미할 수 있습니다(예: 960xxxx) 또는 작업 환경 일련 번호. 다음 옵션 중 하나를 사용하여 도움을 요청할 수 있습니다.</block>
+  <block id="639be990cfca56ab4b63685d8bacd437" category="list-text">비기술적 사례를 제출하세요<block ref="2298f47e4dad19a3156da7ce6116d9b1" category="inline-link-rx"></block></block>
+  <block id="e1100b46295d42ed50ba7a4630710164" category="section-title">지원 사례 관리</block>
+  <block id="316508a3483178100806a9d44b49aba2" category="paragraph">콘솔에서 직접 활성화된 지원 사례와 해결된 지원 사례를 보고 관리할 수 있습니다. 귀하의 NSS 계정 및 회사와 관련된 사례를 관리할 수 있습니다.</block>
+  <block id="cf3a2d2c139bf5c9cc87fe714bfff3b1" category="paragraph">다음 사항에 유의하세요.</block>
+  <block id="5e4e7672ec2ba2b8a763da7f6714e212" category="list-text">페이지 상단의 사례 관리 대시보드는 두 가지 보기를 제공합니다.</block>
+  <block id="01c3ffea552d74a5ae390b10e71a1f26" category="list-text">왼쪽 보기는 귀하가 제공한 NSS 계정 사용자에 의해 지난 3개월 동안 열린 총 사례를 보여줍니다.</block>
+  <block id="e3b6c09a5686233f72ce1ea60a1eb088" category="list-text">오른쪽 보기는 사용자 NSS 계정을 기준으로 지난 3개월 동안 회사 수준에서 열린 총 사례를 보여줍니다.</block>
+  <block id="b19b168cc8a2b8c984465e140256b3a2" category="paragraph">표의 결과는 귀하가 선택한 보기와 관련된 사례를 반영합니다.</block>
+  <block id="56dcadeee6b0e5c47a52673f9b5a0bb3" category="list-text">관심 있는 열을 추가하거나 제거할 수 있으며, 우선순위 및 상태와 같은 열의 내용을 필터링할 수 있습니다. 다른 열은 정렬 기능만 제공합니다.</block>
+  <block id="6f936762e1223311f031685422fcd3a4" category="paragraph">자세한 내용은 아래 단계를 참조하세요.</block>
+  <block id="b14929795a61440e9b4ec9f8a4885ae3" category="list-text">사례별로 사례 메모를 업데이트하거나 아직 닫힘 또는 닫힘 보류 상태가 아닌 사례를 닫는 기능을 제공합니다.</block>
+  <block id="9163e8bca6fd93c080d35ab49e3efdfa" category="list-text">NetApp Console 에서 *도움말 &gt; 지원*을 선택합니다.</block>
+  <block id="2019fd19051c3ef493dbbb9ca65bab87" category="list-text">*사례 관리*를 선택하고 메시지가 표시되면 콘솔에 NSS 계정을 추가합니다.</block>
+  <block id="75e54e3a6fdbf43ed890669e079d7594" category="paragraph">*사례 관리* 페이지는 콘솔 사용자 계정과 연결된 NSS 계정과 관련된 미해결 사례를 표시합니다. 이는 *NSS 관리* 페이지 상단에 표시되는 NSS 계정과 동일합니다.</block>
+  <block id="2ae5ae78bdb2d222f15fd8e89248709c" category="list-text">필요에 따라 표에 표시되는 정보를 수정합니다.</block>
+  <block id="1d39d3ab518e1e3f16cbafb2a56e1fd9" category="list-text">*조직 사례*에서 *보기*를 선택하면 회사와 관련된 모든 사례를 볼 수 있습니다.</block>
+  <block id="059e856250b59be3069246887b74a23c" category="list-text">정확한 날짜 범위를 선택하거나 다른 기간을 선택하여 날짜 범위를 수정하세요.</block>
+  <block id="a1bb576be9e5a356290f231efb51b3f5" category="list-text">열의 내용을 필터링합니다.</block>
+  <block id="1c6ea5ef583389e18e7d7bda70beaa71" category="inline-image-macro">표에 나타나는 플러스 아이콘</block>
+  <block id="8ac6be88c1aa79062825a147fb263b0e" category="list-text">표에 나타나는 열을 변경하려면 다음을 선택하세요.<block ref="500a336e7ba1c54bcffba4e27bda4eb6" category="inline-image-macro-rx" type="image"></block> 그런 다음 표시하려는 열을 선택합니다.</block>
+  <block id="ad0ae9ea1f2e8d973a9a0f6bb169f494" category="inline-image-macro">표의 마지막 열에 나타나는 세 개의 점이 있는 아이콘</block>
+  <block id="049b7b9fab1242f5e715952973c9474d" category="list-text">기존 사례를 선택하여 관리하세요.<block ref="7381d9baeaf62eb099ce84f1a21ed5ca" category="inline-image-macro-rx" type="image"></block> 그리고 사용 가능한 옵션 중 하나를 선택하세요:</block>
+  <block id="6d9dd74e7709ef802d299966f7898f6b" category="list-text">*사례 보기*: 특정 사례에 대한 전체 세부 정보를 확인하세요.</block>
+  <block id="8e6b52a532a4fbbfc98dca3ebfa5f1e6" category="list-text">*사례 메모 업데이트*: 문제에 대한 추가 세부 정보를 제공하거나 *파일 업로드*를 선택하여 최대 5개의 파일을 첨부하세요.</block>
+  <block id="bb6d5d351525342dd6b3cf4d15b6f298" category="list-text">*사건 종결*: 사건을 종결하는 이유를 자세히 입력하고 *사건 종결*을 선택하세요.</block>
+  <block id="079dcdedf213e51a79059ea332844348" category="summary">시스템을 설정한 후에는 Azure NetApp Files 계정, 용량 풀, 볼륨 및 스냅샷을 관리할 수 있습니다.</block>
+  <block id="9038e7cfcfe9bb9df9afd31371070be8" category="doc">기존 볼륨 관리</block>
+  <block id="a2669b974873fd7c51079b5fcd7d7946" category="paragraph">저장 요구 사항이 변경되면 기존 볼륨을 관리할 수 있습니다.  볼륨을 편집하고, 볼륨의 서비스 수준을 변경하고, 스냅샷 복사본을 관리하고, 볼륨을 삭제할 수 있습니다.</block>
+  <block id="333d9261c295516441352ec57f1fbd5a" category="section-title">볼륨 크기 및 태그 편집</block>
+  <block id="8cbb6213062bff0f8ae5d9232049a4ae" category="paragraph">볼륨을 만든 후에는 언제든지 볼륨의 크기와 태그를 수정할 수 있습니다.</block>
+  <block id="c6f681662d24d103e517aeb6021115bc" category="list-text">시스템을 엽니다.</block>
+  <block id="8acb095feb0a7824e13dd4cff484b450" category="list-text">볼륨 위에 마우스를 올려놓고 *편집*을 선택하세요.</block>
+  <block id="c94fd6f55752bbd9d6ff1d91b90b2493" category="list-text">필요에 따라 크기와 태그를 수정하세요.</block>
+  <block id="24347b3ddf5a25cc9c27e54ae285ade1" category="list-text">*적용*을 선택하세요.</block>
+  <block id="d541c25f9313db86b9a30cdcc45ecf79" category="section-title">볼륨의 서비스 수준 변경</block>
+  <block id="43e1a577b6b8efef38b66ad99c2617e3" category="paragraph">볼륨을 생성한 후에는 대상 용량 풀이 이미 존재하는 한 언제든지 서비스 수준을 변경할 수 있습니다.</block>
+  <block id="2b59b840a5b967b90d4d7ab8b92489af" category="list-text">볼륨 위에 마우스를 올려놓고 *서비스 수준 변경*을 선택하세요.</block>
+  <block id="83f077d776e69552c4da718ba6cb17ce" category="list-text">원하는 서비스 수준을 제공하는 용량 풀을 선택하세요.</block>
+  <block id="b3d12894d56e85cc742cb855ce388cdf" category="list-text">*변경*을 선택하세요.</block>
+  <block id="538a392da8eeab76314db8254ebf544b" category="paragraph">볼륨은 볼륨에 영향을 미치지 않고 다른 용량 풀로 이동됩니다.</block>
+  <block id="e479d2534f323a1275e2ed0809755e56" category="section-title">스냅샷 사본 관리</block>
+  <block id="e8ae2d2b47ef8fe5d9635ba5138d815e" category="paragraph">스냅샷 복사본은 볼륨의 특정 시점 복사본을 제공합니다.  스냅샷 복사본을 만들고, 데이터를 새 볼륨으로 복원하고, 스냅샷 복사본을 삭제합니다.</block>
+  <block id="072ce5964f5857c89ec5dc601b703af3" category="list-text">볼륨 위에 마우스를 올려놓고 스냅샷 복사본을 관리하기 위해 사용 가능한 옵션 중 하나를 선택하세요.</block>
+  <block id="77920e8d9473162a2167976898eaa180" category="list-text">*스냅샷 사본 만들기*</block>
+  <block id="ac5983a9eada1c7d1b2571955cdabebc" category="list-text">*볼륨을 스냅샷으로 되돌리기*</block>
+  <block id="b4d6c5073915bd6ebc84d2c6c45d666f" category="list-text">*스냅샷 사본 삭제*</block>
+  <block id="df95b2ddbeefe0bd257bae9d1c7d663a" category="list-text">지시에 따라 선택한 작업을 완료하세요.</block>
+  <block id="f91674f3b22216fc484532cd24dda908" category="section-title">볼륨 삭제</block>
+  <block id="9497c556620605c0441cf034ff68a527" category="paragraph">더 이상 필요하지 않은 볼륨을 삭제합니다.</block>
+  <block id="f31dbb59f9910175fac984702077246e" category="list-text">볼륨 위에 마우스를 올려놓고 *삭제*를 선택하세요.</block>
+  <block id="085b0943196ae7c43e0a95af45bc731f" category="list-text">볼륨을 삭제할지 확인하세요.</block>
+  <block id="a2a31acd90ec883c348fa2a3a6b3ad0e" category="summary">Microsoft Entra 애플리케이션을 설정하고 시스템을 만들어 Azure NetApp Files 시작하세요.</block>
+  <block id="65ce4dce26160be29539699c6623e379" category="doc">시작하기 워크플로</block>
+  <block id="06c2cea18679d64399783748fa367bdd" category="inline-image-macro">하나</block>
+  <block id="6db31f7ad9ac5c8a399245b8721663fc" category="inline-link-macro">Microsoft Entra 애플리케이션 설정</block>
+  <block id="4825dc1eb26b7e7de707e1565fcb2692" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block> <block ref="ceb71631b57ba9aa78ded8805cd28ebf" category="inline-link-macro-rx"></block></block>
+  <block id="0e63ec6ed03b6c3507b12798044de570" category="paragraph">Azure에서 Microsoft Entra 애플리케이션에 권한을 부여하고 애플리케이션(클라이언트) ID, 디렉토리(테넌트) ID 및 클라이언트 비밀 값을 복사합니다.</block>
+  <block id="aada29daee1d64ed0fe907043855cb7e" category="inline-image-macro">둘</block>
+  <block id="d89af440b6e93ddf112a507e25b68050" category="inline-link-macro">Azure NetApp Files 시스템 만들기</block>
+  <block id="d18f5023685c9294fe182d7d16877e19" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block> <block ref="2409ee245d6810a7b80cc8d958a0bda3" category="inline-link-macro-rx"></block></block>
+  <block id="73ff49181f8f01a9e6f958c584d11ffc" category="paragraph">NetApp Console 의 시스템 페이지에서 *시스템 추가* &gt; *Microsoft Azure* &gt; * Azure NetApp Files*를 선택한 다음 Active Directory 애플리케이션에 대한 세부 정보를 제공합니다.</block>
+  <block id="c7342c3c601c8359ae71653932f0a267" category="summary">NetApp Console 에서 Azure NetApp Files 제거하는 방법을 알아보세요.  Azure NetApp Files 계정이나 볼륨은 삭제되지 않습니다.  언제든지 Azure NetApp Files 콘솔에 다시 추가할 수 있습니다.</block>
+  <block id="4c4e3f3d97240f2733748037254ef11b" category="doc">NetApp Console 에서 Azure NetApp Files 제거</block>
+  <block id="a0254c314a7cdb4fe0ec551dd55f3716" category="paragraph">NetApp Console 에서 Azure NetApp Files 시스템을 제거할 수 있습니다.  Azure NetApp Files 시스템을 제거해도 Azure NetApp Files 계정, 용량 풀 또는 볼륨은 삭제되지 않습니다.  언제든지 Azure NetApp Files 콘솔에 다시 추가할 수 있습니다.</block>
+  <block id="f3894063db4ef14f934b024e99c3b0b2" category="list-text">페이지 오른쪽 상단에서 세 개의 점을 선택하세요<block ref="2f43b42fd833d1e77420a8dae7419000" prefix=" " category="inline-code"></block> 그런 다음 * Azure NetApp Files 제거*를 클릭합니다.</block>
+  <block id="85833ade84c26ef3249600b17effff7e" category="inline-image-macro">Azure NetApp Files 시스템을 제거하는 옵션을 보여주는 스크린샷입니다.</block>
+  <block id="57407172b547a10eede67bb947489c41" category="paragraph"><block ref="57407172b547a10eede67bb947489c41" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="127cb235e55e33faa0d21e9fb1eca92a" category="list-text">팝업 대화 상자에서 *제거*를 선택하여 시스템을 제거할 것을 확인합니다.</block>
+  <block id="02b087a8f0d38e5208db545bfa815d2a" category="summary">NetApp Console Azure NetApp Files 설정하고 관리하기 위한 권한이 필요합니다.  Microsoft Entra 애플리케이션을 만들고 설정하고 콘솔에 필요한 Azure 자격 증명을 얻어 Azure 계정에 필요한 권한을 부여할 수 있습니다.</block>
+  <block id="28f3ebeb284e106f3db1ecdcf0c0d2ff" category="section-title">1단계: 애플리케이션 만들기</block>
+  <block id="fc08dc165e8e21d029f26ca8cb6f019c" category="paragraph">콘솔에서 역할 기반 액세스 제어에 사용할 수 있는 Microsoft Entra 애플리케이션과 서비스 주체를 만듭니다.</block>
+  <block id="9e0b4c608c2ed027fef07ddc68aae407" category="inline-link">Microsoft Azure 설명서: 필요한 권한</block>
+  <block id="e5b4feab292e545e09dcd2714a5bc078" category="paragraph">Active Directory 애플리케이션을 만들고 애플리케이션에 역할을 할당하려면 Azure에서 올바른 권한이 있어야 합니다. 자세한 내용은 다음을 참조하세요.<block ref="c67f5fa38a9480e2db769f61bc8033d8" category="inline-link-rx"></block> .</block>
+  <block id="3acc75f616414df16724fc2f4fe192eb" category="list-text">Azure Portal에서 *Microsoft Entra ID* 서비스를 엽니다.</block>
+  <block id="abcaecfb112ec16a9054b876f99d7cf4" category="inline-image-macro">Microsoft Azure의 Active Directory 서비스를 보여주는 스크린샷입니다.</block>
+  <block id="5ee9dc93089da3e95c9863f5259127a3" category="paragraph"><block ref="5ee9dc93089da3e95c9863f5259127a3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b6903fcc348dc2286adda5751418a7f9" category="list-text">메뉴에서 *앱 등록*을 선택하세요.</block>
+  <block id="cce8aa4eda34a5338284d12bd518d218" category="list-text">애플리케이션을 만듭니다.</block>
+  <block id="6d730ff41d50e6c38331a70a20a46df3" category="list-text">*신규 등록*을 선택하세요.</block>
+  <block id="c9034af778b085a9440ffcb8389cc4db" category="list-text">신청서에 대한 세부 사항을 지정하세요:</block>
+  <block id="46beecb01aa2327ae1886dfc53955977" category="list-text">*이름*: 애플리케이션의 이름을 입력하세요.</block>
+  <block id="d2a68aae507dd2f86fe85944bad991fe" category="list-text">*계정 유형*: 계정 유형을 선택하세요(콘솔에서는 어떤 계정 유형이든 사용 가능합니다).</block>
+  <block id="135a1682a5c17ecdf84e57a4dc0c0959" category="list-text">*리디렉션 URI*: 이 항목은 비워두어도 됩니다.</block>
+  <block id="b5249314aff5fae6b6de54ce7f13f16b" category="list-text">*등록*을 선택하세요.</block>
+  <block id="e762ce4f71e8abc9d8deee4d4b7277fe" category="list-text">*애플리케이션(클라이언트) ID*와 *디렉토리(테넌트) ID*를 복사합니다.</block>
+  <block id="7f2c8aa68f18e907a3c5a92e556d4a8a" category="inline-image-macro">Microsoft Entra ID에서 애플리케이션의 애플리케이션(클라이언트) ID와 디렉토리(테넌트) ID를 보여주는 스크린샷입니다.</block>
+  <block id="9f4ee24450c803ea94c43753456d43d1" category="paragraph"><block ref="9f4ee24450c803ea94c43753456d43d1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="48786893c59bde124604a6e9b0d9da7b" category="paragraph">콘솔에서 Azure NetApp Files 시스템을 만들 때 애플리케이션(클라이언트) ID와 애플리케이션의 디렉터리(테넌트) ID를 제공해야 합니다. 콘솔은 ID를 사용하여 프로그래밍 방식으로 로그인합니다.</block>
+  <block id="715ba30d0bc9581a50ce10a867a6b0e1" category="list-text">콘솔에서 Microsoft Entra ID로 인증할 수 있도록 애플리케이션에 대한 클라이언트 비밀번호를 만듭니다.</block>
+  <block id="05498c836fbd4349a752efbb54e8949c" category="list-text">*인증서 및 비밀번호 &gt; 새 클라이언트 비밀번호*를 선택합니다.</block>
+  <block id="56c696c4118c8dc3d2947c159fdbbb7c" category="list-text">비밀에 대한 설명과 기간을 제공하세요.</block>
+  <block id="fa12509cfb8e8ccded16e2a254e988c4" category="list-text">*추가*를 선택하세요.</block>
+  <block id="a91d60261e2974b6b9f5d3d3d0abacdd" category="list-text">클라이언트 비밀번호 값을 복사합니다.</block>
+  <block id="9056be4df2e385c15b0e73176bcf8af3" category="inline-image-macro">Microsoft Entra 서비스 주체에 대한 클라이언트 비밀을 보여주는 Azure Portal의 스크린샷입니다.</block>
+  <block id="12714cc76b41e78029a66f330408bd82" category="paragraph"><block ref="12714cc76b41e78029a66f330408bd82" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="b85dc31a703949c3212d61389207e866" category="paragraph">이제 AD 애플리케이션이 설정되었으며 애플리케이션(클라이언트) ID, 디렉토리(테넌트) ID 및 클라이언트 비밀번호 값을 복사했어야 합니다.  Azure NetApp Files 시스템을 추가할 때 콘솔에 이 정보를 입력해야 합니다.</block>
+  <block id="fb9a62d97d21e431e752501f84624d12" category="section-title">2단계: 앱에 역할 할당</block>
+  <block id="4c52768b52ca020200e5a926929d951d" category="paragraph">서비스 주체를 Azure 구독에 바인딩하고 필요한 권한이 있는 사용자 지정 역할을 할당해야 합니다.</block>
+  <block id="c7fd7910cc533c79ed570ea74704425d" category="inline-link">Azure에서 사용자 지정 역할 만들기</block>
+  <block id="332263c2176bf987d0f67b1eb6778cc7" category="list-text"><block ref="fbd7cfd0f7566c43a33652aa81c3b4ab" category="inline-link-rx"></block> .</block>
+  <block id="10952fdd0e78f38d00c02822bb64d9b1" category="paragraph">다음 단계에서는 Azure Portal에서 역할을 만드는 방법을 설명합니다.</block>
+  <block id="a9c29a42130d729dce82ddfb3ac78e46" category="list-text">구독을 열고 *액세스 제어(IAM)*를 선택합니다.</block>
+  <block id="afbd0cf8e9a12935b7393f61d6be8005" category="list-text">*추가 &gt; 사용자 지정 역할 추가*를 선택합니다.</block>
+  <block id="639c5e298e30f6fe93b20d922ea17933" category="inline-image-macro">Azure Portal에서 사용자 지정 역할을 추가하는 단계를 보여주는 스크린샷입니다.</block>
+  <block id="bf972dc955fe2e7fb9df0a81d06fb348" category="paragraph"><block ref="bf972dc955fe2e7fb9df0a81d06fb348" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f8dea6ae979907327757e0387e92f235" category="list-text">*기본* 탭에서 역할의 이름과 설명을 입력합니다.</block>
+  <block id="4e3aeed356f1841a4f8d2b701eb57daf" category="list-text">*JSON*을 선택한 다음 JSON 형식의 오른쪽 상단에 나타나는 *편집*을 선택합니다.</block>
+  <block id="0b7a672df763c13d4ee88f17e17d5dd5" category="list-text">_actions_ 아래에 다음 권한을 추가합니다.</block>
+  <block id="a272bee1eb1df048c1479432c0f8ff7e" category="list-text">*저장* &gt; *다음*을 선택한 후 *만들기*를 선택합니다.</block>
+  <block id="262bd8aff7acbd549ef1a60afb4d3674" category="list-text">방금 만든 역할에 애플리케이션을 할당합니다.</block>
+  <block id="f73b1d8fc06d2bae03fb642ee202d04f" category="list-text">Azure Portal에서 *구독*을 엽니다.</block>
+  <block id="9d13605979e591928497f3c94aa907c2" category="list-text">구독을 선택하세요.</block>
+  <block id="4373f2885ec5493eabb4edec6b9422e4" category="list-text">*액세스 제어(IAM) &gt; 추가 &gt; 역할 할당 추가*를 선택합니다.</block>
+  <block id="d949ba029d09ca88dbe8bf63e0f6d495" category="list-text">*역할* 탭에서 사용자가 만든 사용자 지정 역할을 선택한 후 *다음*을 클릭합니다.</block>
+  <block id="0a6c621aa17fc5940d876eaadda3bb73" category="list-text">*멤버* 탭에서 다음 단계를 완료하세요.</block>
+  <block id="8663f7025266bcb72c4429db8da6c602" category="list-text">*사용자, 그룹 또는 서비스 주체*를 선택된 상태로 유지합니다.</block>
+  <block id="049d14d05ca9e7adafff9e17ed48736e" category="list-text">*멤버 선택*을 선택하세요.</block>
+  <block id="0972e60de3c49ba718e1aa6c9313eebc" category="inline-image-macro">애플리케이션에 역할을 추가할 때 멤버 탭을 보여주는 Azure Portal의 스크린샷입니다.</block>
+  <block id="3030207711e0d379c8a6c67f942d7c72" category="paragraph"><block ref="3030207711e0d379c8a6c67f942d7c72" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="33aa57c696b6d88350adf8cda157f866" category="list-text">애플리케이션 이름을 검색하세요.</block>
+  <block id="4d947fe0b5c4693f487f4fd1a4295c99" category="paragraph">예를 들면 다음과 같습니다.</block>
+  <block id="f6f55020a29188338bc94800ac249ad7" category="inline-image-macro">Azure Portal의 역할 할당 추가 양식을 보여주는 Azure Portal의 스크린샷입니다.</block>
+  <block id="479d1c5255b557f4e6e3afb3beda5366" category="paragraph"><block ref="479d1c5255b557f4e6e3afb3beda5366" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c7f74fe40e661c7a8f14797d685e22d3" category="list-text">해당 애플리케이션을 선택한 후 *선택*을 클릭하세요.</block>
+  <block id="e6cd86d61f4639c8a27006c6c29b3e9f" category="list-text">*다음*을 선택하세요.</block>
+  <block id="85b8cec39bdb05ec73cd076b2359cfd1" category="list-text">*검토 + 할당*을 선택하세요.</block>
+  <block id="6485d92d18edb38c5174a41b5c3c9bd1" category="paragraph">이제 콘솔의 서비스 주체는 해당 구독에 필요한 Azure 권한을 갖게 되었습니다.</block>
+  <block id="60d6c5f483d163e78b5833c78299cc3a" category="section-title">3단계: 콘솔에 자격 증명 추가</block>
+  <block id="3f08738e91537e6033a1dcddff37fc49" category="paragraph">Azure NetApp Files 시스템을 만들 때 서비스 주체와 연결된 자격 증명을 선택하라는 메시지가 표시됩니다.  시스템을 생성하기 전에 이러한 자격 증명을 콘솔에 추가해야 합니다.</block>
+  <block id="48eb7c4b15e6b9d3e36af9b89c1f18c6" category="list-text">콘솔의 왼쪽 탐색 창에서 **관리** &gt; **자격 증명**을 선택합니다.</block>
+  <block id="c6233dcd0500982eabc73e85f42efc41" category="list-text">*자격 증명 추가*를 선택하고 마법사의 단계를 따르세요.</block>
+  <block id="8ff72be2e1eb14e01733228ef4483ae5" category="list-text">*자격 증명 위치*: *Microsoft Azure &gt; NetApp Console*을 선택합니다.</block>
+  <block id="10d9864d222fd249479246f9c50df58c" category="list-text">*자격 증명 정의*: 필요한 권한을 부여하는 Microsoft Entra 서비스 주체에 대한 정보를 입력합니다.</block>
+  <block id="734082edf44417dd19cc65943aa65c36" category="list-text">클라이언트 비밀번호</block>
+  <block id="5f92aba7d335e90da33ac643d56ed817" category="list-text">애플리케이션(클라이언트) ID</block>
+  <block id="ac1fdeeca5975112ea2d53b754a4c94f" category="list-text">디렉토리(테넌트) ID</block>
+  <block id="c543fc2439a41974bc2b6bac672d9710" category="inline-xref">AD 애플리케이션을 생성했습니다</block>
+  <block id="10bf7641576f767efba644c9606f6cc9" category="paragraph">이 정보는 당신이 언제 이 정보를 캡처했어야 합니까?<block ref="3d73f215425eb80e2dfd60570210a450" category="inline-xref-macro-rx"></block> .</block>
+  <block id="0899501da68f222ed492b1f56f53b085" category="list-text">*검토*: 새로운 자격 증명에 대한 세부 정보를 확인한 다음 *추가*를 선택합니다.</block>
+  <block id="512fd5eb37bb5d3f000a423886a72dd0" category="summary">NetApp 기술 지원에 지원 사례를 개설하려면 먼저 NetApp Console 에 NetApp 지원 사이트 계정을 추가한 다음 지원을 위해 등록해야 합니다.</block>
+  <block id="42748df9eaa0be17ddc5cc1593cf57ab" category="doc">지원 등록</block>
+  <block id="776abbf4d80cbef17bd3c86ff37b2257" category="paragraph">NetApp Console 과 해당 스토리지 솔루션, 데이터 서비스에 대한 기술 지원을 받으려면 지원 등록이 필요합니다. Cloud Volumes ONTAP 시스템의 주요 워크플로를 활성화하려면 지원 등록도 필요합니다.</block>
+  <block id="ba4e23e03f4354a0f1ef2781272c8477" category="paragraph">지원에 등록해도 클라우드 공급자 파일 서비스에 대한 NetApp 지원은 제공되지 않습니다. 클라우드 공급자 파일 서비스, 해당 인프라 또는 서비스를 사용하는 솔루션과 관련된 기술 지원에 대해서는 해당 제품 설명서의 "도움말 받기"를 참조하세요.</block>
+  <block id="0b0e252af8897fbe981ec6682d2aa33b" category="section-title">지원 등록 개요</block>
+  <block id="192054ad7601240a3e8be54cc5cc548e" category="paragraph">지원 자격을 활성화하기 위한 등록 방법은 두 가지가 있습니다.</block>
+  <block id="869a868c87f6fb61410cfd773b4f1bab" category="list-text">NetApp Console 계정 일련 번호를 등록합니다(콘솔의 지원 리소스 페이지에 있는 20자리 960xxxxxxxxx 일련 번호).</block>
+  <block id="be0b51de4268d87101344aa0368b4403" category="paragraph">이는 콘솔 내의 모든 서비스에 대한 단일 지원 구독 ID 역할을 합니다. 각 콘솔 계정을 등록해야 합니다.</block>
+  <block id="55ff64467cd508971910145ab5d6b3b8" category="list-text">클라우드 공급업체의 마켓플레이스에서 구독과 관련된 Cloud Volumes ONTAP 일련 번호를 등록합니다(20자리 909201xxxxxxxx 일련 번호).</block>
+  <block id="3cf9fb70d6921dd90583621f028a395f" category="paragraph">이러한 일련 번호는 일반적으로 _PAYGO 일련 번호_라고 하며 Cloud Volumes ONTAP 배포 시 NetApp Console 에서 생성됩니다.</block>
+  <block id="bf516b6498e37e816d29ae43ae132f74" category="paragraph">두 가지 유형의 일련 번호를 모두 등록하면 지원 티켓 개설 및 자동 사례 생성과 같은 기능을 사용할 수 있습니다. 아래 설명된 대로 콘솔에 NetApp 지원 사이트(NSS) 계정을 추가하여 등록을 완료합니다.</block>
+  <block id="ba5983207e417797fefd5b9374ab4a97" category="section-title">NetApp 지원을 위해 NetApp Console 등록</block>
+  <block id="dcb7105ba6e3d9411b05e726848feb80" category="paragraph">지원을 등록하고 지원 자격을 활성화하려면 NetApp Console 계정의 한 사용자가 NetApp 지원 사이트 계정을 콘솔 로그인과 연결해야 합니다. NetApp 지원에 등록하는 방법은 NetApp 지원 사이트(NSS) 계정이 있는지 여부에 따라 달라집니다.</block>
+  <block id="bf4c731c0ee7f60c8018ad8f96828dda" category="section-title">NSS 계정이 있는 기존 고객</block>
+  <block id="ed5bddb699a442b85bc1bb8e1516fe57" category="paragraph">NSS 계정이 있는 NetApp 고객이라면 콘솔을 통해 지원을 등록하기만 하면 됩니다.</block>
+  <block id="76bc427c3d9c4b81dc353078b942f991" category="list-text">*관리* &gt; *자격 증명*을 선택합니다.</block>
+  <block id="f19ab635e6d5f884a22ee4ce067fdbfd" category="list-text">*사용자 자격 증명*을 선택하세요.</block>
+  <block id="e9451600769b4bf4b20ca941ba9e6d19" category="list-text">*NSS 자격 증명 추가*를 선택하고 NetApp 지원 사이트(NSS) 인증 프롬프트를 따릅니다.</block>
+  <block id="cfc5506589d5a4d055e721267d5f0732" category="list-text">등록 과정이 성공적으로 완료되었는지 확인하려면 도움말 아이콘을 선택하고 *지원*을 선택하세요.</block>
+  <block id="1d4ea9fd10f6cfcd6f6fe1f861d354a4" category="paragraph">*리소스* 페이지에는 귀하의 콘솔 계정이 지원을 위해 등록되어 있다는 내용이 표시됩니다.</block>
+  <block id="afe8240ca62f4b72006980ff64d371b8" category="paragraph">다른 콘솔 사용자는 NetApp 지원 사이트 계정을 로그인과 연결하지 않은 경우 동일한 지원 등록 상태를 볼 수 없습니다. 하지만 그렇다고 해서 귀하의 계정이 지원을 위해 등록되지 않았다는 의미는 아닙니다. 조직 내 한 명의 사용자가 이러한 단계를 따랐다면 귀하의 계정은 등록되었습니다.</block>
+  <block id="1ff5aefce774ec72a211f2b3bb10b950" category="section-title">기존 고객이지만 NSS 계정이 없습니다.</block>
+  <block id="42eaca1e1c2d9e1f04e932eeaa6d129d" category="paragraph">기존 라이선스와 일련 번호는 있지만 NSS 계정이 없는 기존 NetApp 고객인 경우 NSS 계정을 만들고 콘솔 로그인과 연결해야 합니다.</block>
+  <block id="5b2b7f628f804bcb786a097c7e45aa41" category="inline-link">NetApp 지원 사이트 사용자 등록 양식</block>
+  <block id="0c4a8b62da9473fbd5401273c4f85ee0" category="list-text">다음을 완료하여 NetApp 지원 사이트 계정을 만드십시오.<block ref="041bcb6d9bdf91f7d6ac92ae3a196e12" category="inline-link-rx"></block></block>
+  <block id="d61c9f72493817776f392db42ac446a2" category="list-text">일반적으로 * NetApp 고객/최종 사용자*인 적절한 사용자 수준을 선택하세요.</block>
+  <block id="bd33c4539c7d6985f6edafd4a4f2ba1d" category="list-text">위에 사용된 콘솔 계정 일련번호(960xxxx)를 일련번호 필드에 꼭 복사해 두세요. 이렇게 하면 계정 처리가 빨라집니다.</block>
+  <block id="9b1f48f88cd439b7a50fe3e76eb8a853" category="list-text">다음 단계를 완료하여 새 NSS 계정을 콘솔 로그인과 연결하세요.<block ref="2f3aba04ec49ee5f0573a6c80a1b9df2" category="inline-xref-macro-rx"></block> .</block>
+  <block id="e9b1f53d6cabb3394833a4e102eb6a69" category="section-title">NetApp 의 새로운 기능</block>
+  <block id="c20c107d0d4eef6351660f3590324232" category="paragraph">NetApp 처음 사용하시고 NSS 계정이 없으신 경우 아래의 각 단계를 따르세요.</block>
+  <block id="e7e9f49f4584c68b9d97c578e73b7583" category="list-text">콘솔의 오른쪽 상단에서 도움말 아이콘을 선택하고 *지원*을 선택하세요.</block>
+  <block id="2974170a8b1b5b4a2ac69aacd4c1c9c3" category="list-text">지원 등록 페이지에서 계정 ID 일련 번호를 찾으세요.</block>
+  <block id="b50f0a46135bcb7083b1f2f82032fc26" category="inline-image-macro">지원이 첫 번째 옵션으로 나열된 도움말 메뉴의 스크린샷</block>
+  <block id="379f9cd57d97013f3f7fdd24f692a0b1" category="paragraph"><block ref="379f9cd57d97013f3f7fdd24f692a0b1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="dd50e314c18933734174c1156dd9237f" category="inline-link">NetApp 지원 등록 사이트</block>
+  <block id="78f94e749b89d69dcbf3baff21ccb958" category="list-text">로 이동<block ref="e1c4be66250fd76d5c52bfe2cb7daee2" category="inline-link-rx"></block> *저는 등록된 NetApp 고객이 아닙니다*를 선택하세요.</block>
+  <block id="d4f633ef130727b2776fa7f45024ca7d" category="list-text">필수 입력란(빨간색 별표가 있는 항목)을 작성해 주세요.</block>
+  <block id="1128fc8d5ec64880f4d49337ed798d31" category="list-text">*제품군* 필드에서 *클라우드 관리자*를 선택한 다음 해당 청구 제공자를 선택하세요.</block>
+  <block id="50a1dc01b7312307c34a888071586955" category="list-text">위의 2단계에서 계정 일련번호를 복사하고 보안 검사를 완료한 다음 NetApp의 글로벌 데이터 개인정보 보호정책을 읽었는지 확인하세요.</block>
+  <block id="3a24c87c9971d2011b4df223718f84b4" category="paragraph">이 안전한 거래를 마무리하기 위해 제공된 사서함으로 이메일이 즉시 전송됩니다. 몇 분 안에 인증 이메일이 도착하지 않으면 스팸 폴더를 확인하세요.</block>
+  <block id="03413baeca1ff7222737d8ce299bd4e8" category="list-text">이메일 내에서 작업을 확인하세요.</block>
+  <block id="201080500e946070a2e4873042507c77" category="paragraph">확인을 클릭하면 귀하의 요청이 NetApp 에 ​​제출되고 NetApp 지원 사이트 계정을 만드는 것이 좋습니다.</block>
+  <block id="a2454703f88e5bf5b433ae850a87151b" category="list-text">위에 사용된 계정 일련번호(960xxxx)를 일련번호 필드에 꼭 복사해 두세요. 이렇게 하면 처리 속도가 빨라집니다.</block>
+  <block id="684375e279a289295b72a006d93e2c4c" category="paragraph">이 과정에서 NetApp 귀하에게 연락을 드릴 것입니다. 이는 신규 사용자를 대상으로 한 일회성 온보딩 과정입니다.</block>
+  <block id="629757336278be576456cf315303b178" category="paragraph">NetApp 지원 사이트 계정이 있으면 아래 단계를 완료하여 계정을 콘솔 로그인과 연결하세요.<block ref="2f3aba04ec49ee5f0573a6c80a1b9df2" category="inline-xref-macro-rx"></block> .</block>
+  <block id="3e616bae81890a6c8fae17c9b45af152" category="section-title">Cloud Volumes ONTAP 지원을 위한 NSS 자격 증명 연결</block>
+  <block id="f22d1a855e255746a6b925a3b22f7838" category="paragraph">Cloud Volumes ONTAP 에 대한 다음 주요 워크플로를 활성화하려면 NetApp 지원 사이트 자격 증명을 콘솔 계정과 연결해야 합니다.</block>
+  <block id="a0518a10626dc11fd00e2d20265ad240" category="list-text">지원을 위해 Pay-as-you-go Cloud Volumes ONTAP 시스템 등록</block>
+  <block id="321aadf78ef73521712291b7aba6411f" category="paragraph">시스템 지원을 활성화하고 NetApp 기술 지원 리소스에 액세스하려면 NSS 계정을 제공해야 합니다.</block>
+  <block id="d51b2b497db445a16b1c9583c1abbb59" category="list-text">BYOL(Bring Your Own License)을 사용할 때 Cloud Volumes ONTAP 배포</block>
+  <block id="f3cd224f9506684fa3b5e2b89b2a566c" category="paragraph">콘솔에서 라이선스 키를 업로드하고 구매한 기간 동안 구독을 활성화하려면 NSS 계정을 제공해야 합니다. 여기에는 기간 갱신을 위한 자동 업데이트가 포함됩니다.</block>
+  <block id="f5135b68b75a8404803a1eb438e40c5e" category="list-text">Cloud Volumes ONTAP 소프트웨어를 최신 릴리스로 업그레이드</block>
+  <block id="daf104544b5203a46e1580e1b8583f1f" category="paragraph">NSS 자격 증명을 NetApp Console 계정과 연결하는 것은 콘솔 사용자 로그인과 연결된 NSS 계정과 다릅니다.</block>
+  <block id="5bc1315a63455544e7a917a7cc968939" category="paragraph">이러한 NSS 자격 증명은 특정 콘솔 계정 ID와 연결됩니다. 콘솔 조직에 속한 사용자는 *지원 &gt; NSS 관리*에서 이러한 자격 증명에 액세스할 수 있습니다.</block>
+  <block id="328a2c1e7778e9edaf79d90c51409ac4" category="list-text">고객 수준 계정이 있는 경우 하나 이상의 NSS 계정을 추가할 수 있습니다.</block>
+  <block id="e3cd99e4aa330ae6bdfb3754d83ae962" category="list-text">파트너 또는 리셀러 계정이 있는 경우 하나 이상의 NSS 계정을 추가할 수 있지만 고객 수준 계정과 함께 추가할 수는 없습니다.</block>
+  <block id="e8d4092baef6680c6a35d5228ae31de2" category="paragraph"><block ref="e8d4092baef6680c6a35d5228ae31de2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c0e0b7ff0de9558404e9b77ece42948a" category="list-text">*NSS 관리 &gt; NSS 계정 추가*를 선택하세요.</block>
+  <block id="85b9386ed443776127e099931d73448a" category="list-text">메시지가 표시되면 *계속*을 선택하여 Microsoft 로그인 페이지로 이동합니다.</block>
+  <block id="d59e0b46782e48a01966e5c7ccc38d17" category="paragraph">NetApp 지원 및 라이선싱에 특화된 인증 서비스를 위한 ID 공급자로 Microsoft Entra ID를 사용합니다.</block>
+  <block id="465ec6d5eafa3524c948c99d8bfcd306" category="list-text">로그인 페이지에서 NetApp 지원 사이트에 등록된 이메일 주소와 비밀번호를 입력하여 인증 과정을 진행합니다.</block>
+  <block id="7687b0a57d5cb728d9fb892dfc814715" category="paragraph">이러한 작업을 통해 콘솔은 라이선스 다운로드, 소프트웨어 업그레이드 확인, 향후 지원 등록과 같은 작업에 NSS 계정을 사용할 수 있습니다.</block>
+  <block id="ec084bb25ed5b934c09b361069c246b2" category="list-text">NSS 계정은 고객 수준 계정이어야 합니다(게스트나 임시 계정이어서는 안 됩니다). 여러 개의 고객 수준 NSS 계정을 가질 수 있습니다.</block>
+  <block id="27387009488fe78dcc7cb7e3e432792f" category="list-text">해당 계정이 파트너 수준 계정인 경우 NSS 계정은 하나만 있을 수 있습니다. 고객 수준 NSS 계정을 추가하려고 하는데 파트너 수준 계정이 이미 있는 경우 다음과 같은 오류 메시지가 표시됩니다.</block>
+  <block id="d926847e4634e19a1aa7358becc0fa27" category="paragraph">"이 계정에는 다른 유형의 NSS 사용자가 이미 있으므로 NSS 고객 유형이 허용되지 않습니다."</block>
+  <block id="a04a3a5322782e8c18d0d64be7e1ccbc" category="paragraph">기존 고객 수준 NSS 계정이 있고 파트너 수준 계정을 추가하려는 경우에도 마찬가지입니다.</block>
+  <block id="1afe8a81cfddc9fa9559e272bb6b9496" category="list-text">로그인에 성공하면 NetApp NSS 사용자 이름을 저장합니다.</block>
+  <block id="1dcb63fd55c4d22e87cb32275b8cc808" category="inline-image-macro">세 개의 수평 점으로 구성된 아이콘</block>
+  <block id="0dfcbbbe02d3e96f8ad78782e8772587" category="paragraph">이는 귀하의 이메일에 매핑되는 시스템 생성 ID입니다. *NSS 관리* 페이지에서 이메일을 표시할 수 있습니다.<block ref="5151db0ded96d46f40ae09b5e5b167a1" category="inline-image-macro-rx" type="image"></block> 메뉴.</block>
+  <block id="fc79de85a483938f72fbcb9822ec0ae3" category="list-text">로그인 자격 증명 토큰을 새로 고쳐야 하는 경우 *자격 증명 업데이트* 옵션도 있습니다.<block ref="5151db0ded96d46f40ae09b5e5b167a1" category="inline-image-macro-rx" type="image"></block> 메뉴.</block>
+  <block id="b14d512a3c64fb5df16f6721b0603c63" category="paragraph">이 옵션을 사용하면 다시 로그인하라는 메시지가 표시됩니다. 이 계정의 토큰은 90일 후에 만료됩니다. 이에 대한 알림이 게시됩니다.</block>
+  <block id="90ffe83b5eba4f270fabf9a3fc8697e3" category="summary">NetApp Console 에서 Azure NetApp Files 지원의 새로운 기능에 대해 알아보세요.</block>
+  <block id="490414e0366b091220802d406e52c076" category="doc">새로운 소식</block>
+  <block id="0cefe5f6d17b9891a2607df67286b93f" category="paragraph">NetApp Console 에서 Azure NetApp Files 새로운 기능을 알아보세요.</block>
+  <block id="a41dd7aa7d921f9f0881a705d3679e6c" category="section-title">2025년 10월 6일</block>
+  <block id="2b513ec32615ab736c1cab315db516f8" category="section-title">2025년 1월 13일</block>
+  <block id="944c1cc3564ebb8c58254a0340102350" category="section-title">이제 BlueXP 에서 지원되는 네트워크 기능</block>
+  <block id="79d2f91b3755917d79acfd5be561d67b" category="paragraph">BlueXP 에서 Azure NetApp Files 의 볼륨을 구성할 때 이제 네트워크 기능을 지정할 수 있습니다. 이는 기본 Azure NetApp Files 에서 사용할 수 있는 기능과 일치합니다.</block>
+  <block id="bbe4d8abcc3519b138a73b8e46ee2119" category="section-title">2024년 6월 12일</block>
+  <block id="9d5b3307d5a7d5905623bf21ab049bdd" category="section-title">2024년 4월 22일</block>
+  <block id="29c251ed5a57bbffe470654ccbbe714c" category="section-title">2021년 4월 11일</block>
+  <block id="dbbd746e2d2c019dcb0c3c40b74f4f75" category="section-title">2021년 3월 8일</block>
+  <block id="de5b4c52cc860c2f7cacca0bb7f4265f" category="section-title">동적으로 서비스 수준을 변경합니다</block>
+  <block id="65ade213f17aabb636c7c98c83fa9121" category="paragraph">이제 작업 부하 요구 사항을 충족하고 비용을 최적화하기 위해 볼륨의 서비스 수준을 동적으로 변경할 수 있습니다.  볼륨은 볼륨에 영향을 미치지 않고 다른 용량 풀로 이동됩니다.</block>
+  <block id="f89e84889d5fd0c46e9997ddb21ac922" category="inline-link">볼륨의 서비스 수준을 변경하는 방법을 알아보세요</block>
+  <block id="50677882efe321e7fec19456f58faadc" category="paragraph"><block ref="536037d368170de6e6fbdb576d167663" category="inline-link-rx"></block> .</block>
+  <block id="95fa237a7a6265df02b6172c4be387f7" category="section-title">2020년 8월 3일</block>
+  <block id="629ca03a8a495acd7bc18927ca4da6cc" category="section-title">Azure NetApp Files 설정 및 관리</block>
+  <block id="2a0093e311ddab71ac3eaea6bf045c9b" category="paragraph">Cloud Manager에서 직접 Azure NetApp Files 설정하고 관리하세요.  Azure NetApp Files 시스템을 만든 후에는 다음 작업을 완료할 수 있습니다.</block>
+  <block id="a42ed9034f13a0f6a3660f2c241f605f" category="list-text">NFS 및 SMB 볼륨을 생성합니다.</block>
+  <block id="0d293213ebed3e92e24e1624dfd19aa2" category="list-text">용량 풀 및 볼륨 스냅샷 관리</block>
+  <block id="e54595e40dfd177a2a9e671c794a3a4d" category="paragraph">Cloud Manager를 사용하면 볼륨 스냅샷을 만들고, 삭제하고, 복원할 수 있습니다.  새로운 용량 풀을 만들고 서비스 수준을 지정할 수도 있습니다.</block>
+  <block id="5054d68a0b2f03dece3eb72cfaa09427" category="list-text">볼륨의 크기를 변경하고 태그를 관리하여 볼륨을 편집합니다.</block>
+  <block id="396a3c9fb559d38e68f68ea139b3539a" category="paragraph">Cloud Manager에서 직접 Azure NetApp Files 만들고 관리하는 기능은 이전의 데이터 마이그레이션 기능을 대체합니다.</block>
+  <block id="173fd2f937506a4111b0bc09349619a8" category="section-title">2020년 4월 5일</block>
+  <block id="02a58c551f186d8f833147198d69fb26" category="section-title">Azure NetApp Files 로 데이터 마이그레이션</block>
+  <block id="cc4556ad288d7fd7e7c9f944615b36c2" category="paragraph">이제 Cloud Manager에서 NFS 또는 SMB 데이터를 Azure NetApp Files 로 직접 마이그레이션할 수 있습니다.  데이터 동기화는 BlueXP copy and sync 통해 제공됩니다.</block>
+  <block id="c20fe03ed4060aff466dc9c6002fce66" category="sidebar">Azure NetApp Files 는 핵심 비즈니스 애플리케이션을 위한 Microsoft Azure 기반 고성능 파일 저장 서비스입니다.  이 문서에서는 NetApp Console 사용하여 Azure NetApp Files 설정하고 관리하는 방법을 설명합니다.</block>
+  <block id="4cb31f0690cc628be510eb7f37ff1267" category="sidebar">Azure NetApp Files 는 핵심 비즈니스 애플리케이션을 위한 Microsoft Azure 기반 고성능 파일 저장 서비스입니다.  이 문서에서는 NetApp Console 사용하여 Azure NetApp Files 설정하고 관리하는 방법을 설명합니다.</block>
+  <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">시작하기</block>
+  <block id="06ad314b340900d226b1196e1fe289e9" category="sidebar">빠른 시작</block>
+  <block id="6ade0d3f74b8a5014c9cb307d47a0cb4" category="sidebar">Azure NetApp Files 사용</block>
+  <block id="e2439a8512b353f75391ba9c346bc84d" category="sidebar">볼륨 관리</block>
+  <block id="813011e2103649bb71f124adedcc10ea" category="sidebar">블로그 및 커뮤니티</block>
+  <block id="cc58d3a9b2264c4fd8cb1d3f61b90bdc" category="sidebar">NetApp Data Services</block>
+  <block id="dd490b81914dd945601e442a41cb4222" category="sidebar">NetApp 커뮤니티</block>
+  <block id="d75d347ae1d51e933d39fea688b0abf1" category="sidebar">Azure NetApp Files 문서</block>
+  <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">릴리스 노트</block>
+  <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">새로운 소식</block>
+  <block id="54bf50ac4192428b20101638ad32f617" category="sidebar">시스템을 만들어라</block>
+  <block id="a5cd00357f60ad0eaa681bb68df15c6d" category="sidebar">Azure NetApp Files 제거</block>
+  <block id="0adc03eac86772ad2c75c8f140be417e" category="sidebar">지식과 지원</block>
+</blocks>
