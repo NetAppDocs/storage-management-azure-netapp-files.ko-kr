@@ -1,0 +1,29 @@
+---
+indexpage:
+  title: Azure NetApp Files 설명서
+  summary: Azure NetApp Files 는 핵심 비즈니스 애플리케이션을 위한 Microsoft Azure 기반 고성능 파일 저장 서비스입니다.  이
+    문서에서는 NetApp 콘솔을 사용하여 Azure NetApp Files 설정하고 관리하는 방법을 설명합니다.
+  keywords: Azure NetApp Files, netapp console
+  lead: Azure NetApp Files 는 핵심 비즈니스 애플리케이션을 위한 Microsoft Azure 기반 고성능 파일 저장 서비스입니다.  이
+    문서에서는 NetApp 콘솔을 사용하여 Azure NetApp Files 설정하고 관리하는 방법을 설명합니다.
+  tiles:
+  - title: 시작하기
+    links:
+    - title: Azure NetApp Files 에 대해 알아보기
+      url: concept-azure-netapp-files.html
+    - title: 빠른 시작
+      url: task-quick-start.html
+  - title: Azure NetApp Files 사용
+    links:
+    - title: 볼륨 생성
+      url: task-create-volumes.html
+    - title: 볼륨 관리
+      url: task-manage-volumes.html
+  - title: 블로그 및 커뮤니티
+    links:
+    - title: NetApp 콘솔
+      url: https://www.netapp.com/console
+    - title: NetApp 데이터 서비스
+      url: https://www.netapp.com/data-services/
+    - title: NetApp 커뮤니티
+      url: https://community.netapp.com/

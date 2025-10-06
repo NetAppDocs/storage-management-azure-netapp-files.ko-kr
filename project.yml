@@ -1,0 +1,47 @@
+---
+settings:
+  name: Azure NetApp Files
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  rss_page: whats-new.html
+  langs: ko-kr,us-en,de-de,es-es,fr-fr,it-it,pt-br,ja-jp,zh-cn,zh-tw
+sidebar:
+  entries:
+  - title: Azure NetApp Files 문서
+    url: "/index.html"
+  - title: 릴리스 노트
+    entries:
+    - title: 새로운 소식
+      url: "/whats-new.html"
+  - title: 시작하기
+    entries:
+    - title: Azure NetApp Files 에 대해 알아보기
+      url: "/concept-azure-netapp-files.html"
+    - title: 시작하기 워크플로
+      url: "/task-quick-start.html"
+    - title: Microsoft Entra 애플리케이션 설정
+      url: "/task-set-up-azure-ad.html"
+    - title: 시스템을 만들어라
+      url: "/task-create-system.html"
+  - title: Azure NetApp Files 사용
+    entries:
+    - title: 볼륨 생성 및 마운트
+      url: "/task-create-volumes.html"
+    - title: 기존 볼륨 관리
+      url: "/task-manage-volumes.html"
+    - title: Azure NetApp Files 제거
+      url: "/task-remove-system.html"
+  - title: 지식과 지원
+    entries:
+    - title: 지원 등록
+      url: "/task-support-registration.html"
+    - title: 도움을 받으세요
+      url: "/task-get-help.html"
+  - title: 법적 고지 사항
+    url: "/legal-notices.html"
+product-family:
+  name: Storage Management
+  repo: storage-management-family

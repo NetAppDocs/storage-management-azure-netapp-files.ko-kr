@@ -1,0 +1,121 @@
+---
+sidebar: sidebar 
+permalink: whats-new.html 
+keywords: 'what"s new, features, new, release notes, bugs, limitations, known issues, enhancements, fixes, netapp console' 
+summary: NetApp 콘솔에서 Azure NetApp Files 지원의 새로운 기능에 대해 알아보세요. 
+---
+= 새로운 소식
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp 콘솔에서 Azure NetApp Files 새로운 기능을 알아보세요.
+
+
+
+== 2025년 10월 6일
+
+
+
+=== BlueXP 는 이제 NetApp 콘솔입니다.
+
+BlueXP 데이터 인프라 관리에서의 역할을 더 잘 반영하도록 이름이 바뀌고 재설계되었습니다.
+
+NetApp 콘솔은 엔터프라이즈급 온프레미스 및 클라우드 환경 전반의 스토리지 및 데이터 서비스를 중앙에서 관리하여 실시간 통찰력, 더 빠른 워크플로, 간소화된 관리를 제공합니다.
+
+변경된 사항에 대한 자세한 내용은 다음을 참조하세요. https://docs.netapp.com/us-en/bluexp-relnotes/index.html["NetApp 콘솔 릴리스 노트"] .
+
+
+
+== 2025년 1월 13일
+
+
+
+=== 이제 BlueXP 에서 지원되는 네트워크 기능
+
+BlueXP 에서 Azure NetApp Files 의 볼륨을 구성할 때 이제 네트워크 기능을 지정할 수 있습니다.  이는 기본 Azure NetApp Files 에서 사용할 수 있는 기능과 일치합니다.
+
+
+
+== 2024년 6월 12일
+
+
+
+=== 새로운 허가가 필요합니다
+
+이제 BlueXP 에서 Azure NetApp Files 볼륨을 관리하려면 다음 권한이 필요합니다.
+
+Microsoft.Network/virtualNetworks/subnets/read
+
+가상 네트워크 서브넷을 읽으려면 이 권한이 필요합니다.
+
+현재 BlueXP 에서 Azure NetApp Files 관리하고 있다면 이전에 만든 Microsoft Entra 애플리케이션과 연결된 사용자 지정 역할에 이 권한을 추가해야 합니다.
+
+https://docs.netapp.com/us-en/bluexp-azure-netapp-files/task-set-up-azure-ad.html["Microsoft Entra 애플리케이션을 설정하고 사용자 지정 역할 권한을 보는 방법을 알아보세요."] .
+
+
+
+== 2024년 4월 22일
+
+
+
+=== 볼륨 템플릿은 더 이상 지원되지 않습니다.
+
+더 이상 템플릿에서 볼륨을 생성할 수 없습니다. 이 작업은 더 이상 사용할 수 없는 BlueXP 복구 서비스와 관련이 있습니다.
+
+
+
+== 2021년 4월 11일
+
+
+
+=== 볼륨 템플릿 지원
+
+새로운 애플리케이션 템플릿 서비스를 사용하면 Azure NetApp Files 에 대한 볼륨 템플릿을 설정할 수 있습니다.  템플릿을 사용하면 용량 풀, 크기, 프로토콜, 볼륨이 위치해야 하는 VNet 및 서브넷 등 특정 볼륨 매개변수가 이미 템플릿에 정의되어 있으므로 작업이 더 쉬워집니다.  매개변수가 이미 미리 정의된 경우 다음 볼륨 매개변수로 건너뛸 수 있습니다.
+
+
+
+== 2021년 3월 8일
+
+
+
+=== 동적으로 서비스 수준을 변경합니다
+
+이제 작업 부하 요구 사항을 충족하고 비용을 최적화하기 위해 볼륨의 서비스 수준을 동적으로 변경할 수 있습니다.  볼륨은 볼륨에 영향을 미치지 않고 다른 용량 풀로 이동됩니다.
+
+https://docs.netapp.com/us-en/bluexp-azure-netapp-files/task-manage-volumes.html#change-the-volumes-service-level["볼륨의 서비스 수준을 변경하는 방법을 알아보세요"] .
+
+
+
+== 2020년 8월 3일
+
+
+
+=== Azure NetApp Files 설정 및 관리
+
+Cloud Manager에서 직접 Azure NetApp Files 설정하고 관리하세요.  Azure NetApp Files 시스템을 만든 후에는 다음 작업을 완료할 수 있습니다.
+
+* NFS 및 SMB 볼륨을 생성합니다.
+* 용량 풀 및 볼륨 스냅샷 관리
++
+Cloud Manager를 사용하면 볼륨 스냅샷을 만들고, 삭제하고, 복원할 수 있습니다.  새로운 용량 풀을 만들고 서비스 수준을 지정할 수도 있습니다.
+
+* 볼륨의 크기를 변경하고 태그를 관리하여 볼륨을 편집합니다.
+
+
+Cloud Manager에서 직접 Azure NetApp Files 만들고 관리하는 기능은 이전의 데이터 마이그레이션 기능을 대체합니다.
+
+
+
+== 2020년 4월 5일
+
+
+
+=== Azure NetApp Files 로 데이터 마이그레이션
+
+이제 Cloud Manager에서 NFS 또는 SMB 데이터를 Azure NetApp Files 로 직접 마이그레이션할 수 있습니다.  데이터 동기화는 BlueXP copy and sync 통해 제공됩니다.

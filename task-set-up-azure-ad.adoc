@@ -1,0 +1,163 @@
+---
+sidebar: sidebar 
+permalink: task-set-up-azure-ad.html 
+keywords: azure netapp files, azure netapp files permissions, azure permissions, active directory, application, ad application, ad app, app, service principal 
+summary: NetApp 콘솔에는 Azure NetApp Files 설정하고 관리하기 위한 권한이 필요합니다.  Microsoft Entra 애플리케이션을 만들고 설정하고 콘솔에 필요한 Azure 자격 증명을 얻어 Azure 계정에 필요한 권한을 부여할 수 있습니다. 
+---
+= Microsoft Entra 애플리케이션 설정
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp 콘솔에는 Azure NetApp Files 설정하고 관리하기 위한 권한이 필요합니다.  Microsoft Entra 애플리케이션을 만들고 설정하고 콘솔에 필요한 Azure 자격 증명을 얻어 Azure 계정에 필요한 권한을 부여할 수 있습니다.
+
+
+
+== 1단계: 애플리케이션 만들기
+
+콘솔에서 역할 기반 액세스 제어에 사용할 수 있는 Microsoft Entra 애플리케이션과 서비스 주체를 만듭니다.
+
+.시작하기 전에
+Active Directory 애플리케이션을 만들고 애플리케이션에 역할을 할당하려면 Azure에서 올바른 권한이 있어야 합니다. 자세한 내용은 다음을 참조하세요. https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#required-permissions/["Microsoft Azure 설명서: 필요한 권한"^] .
+
+.단계
+. Azure Portal에서 *Microsoft Entra ID* 서비스를 엽니다.
++
+image:screenshot_azure_ad.png["Microsoft Azure의 Active Directory 서비스를 보여주는 스크린샷입니다."]
+
+. 메뉴에서 *앱 등록*을 선택하세요.
+. 애플리케이션을 만듭니다.
++
+.. *신규 등록*을 선택하세요.
+.. 신청서에 대한 세부 사항을 지정하세요:
++
+*** *이름*: 애플리케이션의 이름을 입력하세요.
+*** *계정 유형*: 계정 유형을 선택하세요(콘솔에서는 어떤 계정 유형이든 사용 가능합니다).
+*** *리디렉션 URI*: 이 항목은 비워두어도 됩니다.
+
+
+.. *등록*을 선택하세요.
+
+
+. *애플리케이션(클라이언트) ID*와 *디렉토리(테넌트) ID*를 복사합니다.
++
+image:screenshot_anf_app_ids.gif["Microsoft Entra ID에서 애플리케이션의 애플리케이션(클라이언트) ID와 디렉토리(테넌트) ID를 보여주는 스크린샷입니다."]
+
++
+콘솔에서 Azure NetApp Files 시스템을 만들 때 애플리케이션(클라이언트) ID와 애플리케이션의 디렉터리(테넌트) ID를 제공해야 합니다. 콘솔은 ID를 사용하여 프로그래밍 방식으로 로그인합니다.
+
+. 콘솔에서 Microsoft Entra ID로 인증할 수 있도록 애플리케이션에 대한 클라이언트 비밀번호를 만듭니다.
++
+.. *인증서 및 비밀번호 > 새 클라이언트 비밀번호*를 선택합니다.
+.. 비밀에 대한 설명과 기간을 제공하세요.
+.. *추가*를 선택하세요.
+.. 클라이언트 비밀번호 값을 복사합니다.
++
+image:screenshot_anf_client_secret.gif["Microsoft Entra 서비스 주체에 대한 클라이언트 비밀을 보여주는 Azure Portal의 스크린샷입니다."]
+
+
+
+
+
+.결과
+이제 AD 애플리케이션이 설정되었으며 애플리케이션(클라이언트) ID, 디렉토리(테넌트) ID 및 클라이언트 비밀번호 값을 복사했어야 합니다.  Azure NetApp Files 시스템을 추가할 때 콘솔에 이 정보를 입력해야 합니다.
+
+
+
+== 2단계: 앱에 역할 할당
+
+서비스 주체를 Azure 구독에 바인딩하고 필요한 권한이 있는 사용자 지정 역할을 할당해야 합니다.
+
+.단계
+. https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles["Azure에서 사용자 지정 역할 만들기"^] .
++
+다음 단계에서는 Azure Portal에서 역할을 만드는 방법을 설명합니다.
+
++
+.. 구독을 열고 *액세스 제어(IAM)*를 선택합니다.
+.. *추가 > 사용자 지정 역할 추가*를 선택합니다.
++
+image:screenshot_azure_access_control.gif["Azure Portal에서 사용자 지정 역할을 추가하는 단계를 보여주는 스크린샷입니다."]
+
+.. *기본* 탭에서 역할의 이름과 설명을 입력합니다.
+.. *JSON*을 선택한 다음 JSON 형식의 오른쪽 상단에 나타나는 *편집*을 선택합니다.
+.. _actions_ 아래에 다음 권한을 추가합니다.
++
+[source, json]
+----
+"actions": [
+    "Microsoft.NetApp/*",
+    "Microsoft.Resources/resources/read",
+    "Microsoft.Resources/subscriptions/resourceGroups/read",
+    "Microsoft.Resources/subscriptions/resourcegroups/resources/read",
+    "Microsoft.Resources/subscriptions/resourceGroups/write",
+    "Microsoft.Network/virtualNetworks/read",
+    "Microsoft.Network/virtualNetworks/subnets/read",
+    "Microsoft.Insights/Metrics/Read"
+    ],
+----
+.. *저장* > *다음*을 선택한 후 *만들기*를 선택합니다.
+
+
+. 방금 만든 역할에 애플리케이션을 할당합니다.
++
+.. Azure Portal에서 *구독*을 엽니다.
+.. 구독을 선택하세요.
+.. *액세스 제어(IAM) > 추가 > 역할 할당 추가*를 선택합니다.
+.. *역할* 탭에서 사용자가 만든 사용자 지정 역할을 선택한 후 *다음*을 클릭합니다.
+.. *멤버* 탭에서 다음 단계를 완료하세요.
++
+*** *사용자, 그룹 또는 서비스 주체*를 선택된 상태로 유지합니다.
+*** *멤버 선택*을 선택하세요.
++
+image:screenshot-azure-anf-role.png["애플리케이션에 역할을 추가할 때 멤버 탭을 보여주는 Azure Portal의 스크린샷입니다."]
+
+*** 애플리케이션 이름을 검색하세요.
++
+예를 들면 다음과 같습니다.
+
++
+image:screenshot_anf_app_role.png["Azure Portal의 역할 할당 추가 양식을 보여주는 Azure Portal의 스크린샷입니다."]
+
+*** 응용 프로그램을 선택한 다음 *선택*을 클릭하세요.
+*** *다음*을 선택하세요.
+
+
+.. *검토 + 할당*을 선택하세요.
++
+이제 콘솔의 서비스 주체는 해당 구독에 필요한 Azure 권한을 갖게 되었습니다.
+
+
+
+
+
+
+
+== 3단계: 콘솔에 자격 증명 추가
+
+Azure NetApp Files 시스템을 만들 때 서비스 주체와 연결된 자격 증명을 선택하라는 메시지가 표시됩니다.  시스템을 생성하기 전에 이러한 자격 증명을 콘솔에 추가해야 합니다.
+
+.단계
+. 콘솔의 왼쪽 탐색 창에서 **관리** > **자격 증명**을 선택합니다.
+. *자격 증명 추가*를 선택하고 마법사의 단계를 따르세요.
++
+.. *자격 증명 위치*: *Microsoft Azure > NetApp 콘솔*을 선택합니다.
+.. *자격 증명 정의*: 필요한 권한을 부여하는 Microsoft Entra 서비스 주체에 대한 정보를 입력합니다.
++
+*** 클라이언트 비밀번호
+*** 애플리케이션(클라이언트) ID
+*** 디렉토리(테넌트) ID
++
+이 정보는 당신이 언제 이 정보를 캡처했어야 합니까?<<create-AD-application,AD 애플리케이션을 생성했습니다>> .
+
+
+
+.. *검토*: 새로운 자격 증명에 대한 세부 정보를 확인한 다음 *추가*를 선택합니다.
+
+
+
